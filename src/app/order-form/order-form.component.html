@@ -1,0 +1,14 @@
+
+<div class="container">
+  <h2>  Commande Form  </h2>
+   <div *ngFor="let product of products">
+    <label> {{product.name}} ({{product.price | currency}} ) </label>
+    <input type="number"
+    [(ngModel)] ="productQuantities[product.id]"
+    min="1"
+    [ngModelOptions]="{ standalone: true }"
+    />
+   </div>
+
+
+</div>
