@@ -1,21 +1,52 @@
 <div class="container">
   <h2>Add Product</h2>
-  <form (ngSubmit)="addProduct()" >
+  <form nz-form (ngSubmit)="addProduct()" [nzLayout]="'vertical'">
+    <nz-form-item>
+      <nz-form-label [nzFor]="'name'" [nzRequired]="true">Nom du Produit</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          id="name"
+          [(ngModel)]="product.name"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Entrez le nom du produit"
+        />
+      </nz-form-control>
+    </nz-form-item>
 
- <div class="form-group">
-  <label for='name' > Nom du Produit:  </label>
-  <input type="text" id="name"  [(ngModel)]="product.name"  [ngModelOptions]="{ standalone: true }"/>
- </div>
- <div class="form-group">
-  <label for='price' > Prix:  </label>
-  <input type="number" id="price"  [(ngModel)]="product.price"  [ngModelOptions]="{ standalone: true }" />
- </div>
+    <nz-form-item>
+      <nz-form-label [nzFor]="'price'" [nzRequired]="true">Prix</nz-form-label>
+      <nz-form-control>
+        <input
+          nz-input
+          type="number"
+          id="price"
+          [(ngModel)]="product.price"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Entrez le prix"
+        />
+      </nz-form-control>
+    </nz-form-item>
 
- <div class="form-group">
-  <label for='description' > Description:  </label>
-  <input type="text" id="description"  [(ngModel)]="product.description"  [ngModelOptions]="{ standalone: true }" />
- </div>
+    <nz-form-item>
+      <nz-form-label [nzFor]="'description'">Description</nz-form-label>
+      <nz-form-control>
+        <textarea
+          nz-input
+          id="description"
+          [(ngModel)]="product.description"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Entrez une description"
+          rows="3"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
 
- <button  type="submit" class="btn btn-primary" >Ajouter Produit</button>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" type="submit">Ajouter Produit</button>
+      </nz-form-control>
+    </nz-form-item>
   </form>
 </div>

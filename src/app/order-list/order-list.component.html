@@ -1,0 +1,33 @@
+<div class="container">
+  <h2 class="page-title">Order List</h2>
+
+  <div class="order-cards">
+    <nz-card
+      *ngFor="let order of orders"
+      [nzBordered]="true"
+      [nzHoverable]="true"
+      class="order-card"
+    >
+      <div class="order-details">
+        <h3 class="order-id">Order ID: {{ order.id }}</h3>
+        <p class="order-date">Date: {{ order.date | date }}</p>
+        <p class="order-total">Total: {{ order.totalPrice | currency }}</p>
+      </div>
+
+      <div class="order-actions">
+        <button
+          nz-button
+          nzType="primary"
+          (click)="deleteOrder(order.id)"
+        >
+          Delete
+        </button>
+      </div>
+    </nz-card>
+  </div>
+
+  <hr />
+  <h3 class="total-sum">
+    Total Sum of All Orders: {{ totalSum | currency }}
+  </h3>
+</div>

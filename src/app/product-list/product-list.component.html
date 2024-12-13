@@ -1,30 +1,36 @@
-
 <div class="container">
-  <h2>Liste des produtis</h2>
+  <h2>Liste des produits</h2>
 
-  <table  >
+  <nz-table
+    #basicTable
+    [nzBordered]="true"
+    [nzData]="products"
+    [nzBordered]="true"
+    [nzSize]="'middle'"
+    [nzShowPagination]="true"
+    [nzPaginationPosition]="'bottom'"
+  >
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Prix</th>
-        <th>Description</th>
-        <th>Supprimer</th>
+        <th nzWidth="10%">ID</th>
+        <th nzWidth="20%">Nom</th>
+        <th nzWidth="20%">Prix</th>
+        <th nzWidth="30%">Description</th>
+        <th nzWidth="20%">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products" >
-        <td> {{product.id}} </td>
-        <td> {{product.name}} </td>
-        <td> {{product.price}} </td>
-        <td> {{product.description}} </td>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price | currency:'EUR' }}</td>
+        <td>{{ product.description }}</td>
         <td>
-          <button (click)="deleteProduct(product.id)" >
-            Supprimer
-          </button>
+          <!-- <button nz-button nzType="default" nzSize="small" (click)="viewProduct(product.id)">Voir</button>
+          <button nz-button nzType="primary" nzSize="small" (click)="editProduct(product.id)">Modifier</button> -->
+          <button nz-button nzType="default" nzDanger nzSize="small" (click)="deleteProduct(product.id)">Supprimer</button>
         </td>
-
       </tr>
     </tbody>
-  </table>
+  </nz-table>
 </div>

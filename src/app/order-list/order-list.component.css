@@ -1,0 +1,47 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.order-details {
+  padding: 10px;
+}
+
+.order-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.order-actions button {
+  margin-left: 10px;
+}
+
+.footer-content {
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  background-color: #f9f9f9;
+}
+
+.nz-list-item {
+  margin-bottom: 15px;
+}
+
+.nz-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nz-card .order-details {
+  flex: 1;
+}
+
+.nz-card .order-actions {
+  margin-left: 20px;
+}

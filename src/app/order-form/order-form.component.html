@@ -1,14 +1,67 @@
-
 <div class="container">
-  <h2>  Commande Form  </h2>
-   <div *ngFor="let product of products">
-    <label> {{product.name}} ({{product.price | currency}} ) </label>
-    <input type="number"
-    [(ngModel)] ="productQuantities[product.id]"
-    min="1"
-    [ngModelOptions]="{ standalone: true }"
-    />
-   </div>
+  <h2>Order Form</h2>
 
+  <!-- Loop through products and display each product -->
+  <div *ngFor="let product of products" nz-row [nzGutter]="16" class="product-row">
+    <div nz-col [nzSpan]="12">
+      <nz-card [nzBordered]="true">
+        <div class="form-group">
+          <label><strong>{{ product.name }}</strong> ({{ product.price | currency }})</label>
+          <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="12">
+              <nz-input-number
+                [(ngModel)]="productQuantities[product.id]"
+                [nzMin]="1"
+                [nzStep]="1"
+                [nzPlaceHolder]="'Enter Quantity'"
+                [ngModelOptions]="{ standalone: true }"
+              ></nz-input-number>
+            </div>
+            <div nz-col [nzSpan]="12">
+              <button
+                nz-button
+                nzType="primary"
+                nzBlock
+                (click)="onProductAdded(product)"
+                [disabled]="productQuantities[product.id] <= 0"
+              >
+                Ajouter au panier
+              </button>
+            </div>
+          </div>
+        </div>
+      </nz-card>
+    </div>
+  </div>
 
+  <hr />
+
+  <!-- Display selected products using *ngFor -->
+  <h3>Produits Sélectionnés</h3>
+  <div *ngFor="let item of selectedProducts">
+    <nz-card [nzBordered]="true" class="selected-product-card">
+      <div class="item-content">
+        <h4>{{ item.product.name }}</h4>
+        <p>Quantité: {{ item.quantity }}</p>
+        <p>Prix: {{ item.product.price | currency }}</p>
+      </div>
+      <div class="item-actions">
+        <button nz-button nzType="primary" (click)="removeProductFromOrder(item.product.id)">
+          Supprimer
+        </button>
+      </div>
+    </nz-card>
+  </div>
+
+  <hr />
+
+  <!-- Display total price -->
+  <h3>Total: <strong>{{ totalPrice | currency }}</strong></h3>
+
+  <!-- Submit order -->
+  <div class="action-buttons">
+    <button nz-button nzType="primary" nzBlock (click)="submitOrder()" [disabled]="selectedProducts.length === 0">
+      Soumettre la commande
+    </button>
+  </div>
 </div>

@@ -1,23 +1,54 @@
-import { ProductService } from './../services/product.service';
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../services/product.service';
 import { Product } from '../models/Product';
 import { CommandeService } from '../services/commande.service';
 
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
-  styleUrl: './order-form.component.css'
+  styleUrls: ['./order-form.component.css'],
 })
 export class OrderFormComponent implements OnInit {
-  products : Product [] = [];
+  products: Product[] = [];
+  productQuantities: { [productId: number]: number } = {};
 
-  productQuantities : { [productId:number] :number}  = {};
+  constructor(
+    private productService: ProductService,
+    private commandeService: CommandeService
+  ) {}
 
-
-  constructor (private   productService : ProductService,private   commandeService : CommandeService
-  ){}
   ngOnInit(): void {
     this.products = this.productService.getProducts();
+    this.products.forEach((product) => {
+      this.productQuantities[product.id] = 1;
+    });
   }
 
+  onProductAdded(product: Product): void {
+    const quantity = this.productQuantities[product.id] || 0;
+    if (quantity <= 0) {
+      alert('Please enter a valid quantity!');
+      return;
+    }
+
+    this.commandeService.addProductToCommande(product, quantity);
+    this.productQuantities[product.id] = 1;  // Reset quantity to 1 after adding
+  }
+
+  removeProductFromOrder(productId: number): void {
+    this.commandeService.removeProductFromOrder(productId);
+  }
+
+  get totalPrice(): number {
+    return this.commandeService.getTotalPrice();
+  }
+
+  get selectedProducts(): { product: Product; quantity: number }[] {
+    return this.commandeService.getSelectedProducts();
+  }
+
+  submitOrder(): void {
+    const newOrder = this.commandeService.submitCommande();
+    alert('Order submitted successfully!');
+  }
 }
