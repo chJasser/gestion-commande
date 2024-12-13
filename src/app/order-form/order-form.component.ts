@@ -18,10 +18,18 @@ export class OrderFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // productService
     this.products = this.productService.getProducts();
+
+    // initialize productQuantities to 1
     this.products.forEach((product) => {
       this.productQuantities[product.id] = 1;
     });
+      //     productQuantities = {
+      // 1:1,
+      // 2:1,
+      // 3:1,
+      //     }
   }
 
   onProductAdded(product: Product): void {
@@ -30,7 +38,7 @@ export class OrderFormComponent implements OnInit {
       alert('Please enter a valid quantity!');
       return;
     }
-
+//  call addProductToCommande from  commandeService
     this.commandeService.addProductToCommande(product, quantity);
     this.productQuantities[product.id] = 1;  // Reset quantity to 1 after adding
   }
@@ -48,7 +56,7 @@ export class OrderFormComponent implements OnInit {
   }
 
   submitOrder(): void {
-    const newOrder = this.commandeService.submitCommande();
+    this.commandeService.submitCommande();
     alert('Order submitted successfully!');
   }
 }

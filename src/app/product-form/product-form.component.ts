@@ -19,11 +19,11 @@ export class ProductFormComponent {
   // inject product service
   constructor (private productService:ProductService){}
 
-  // onClick html
-
   addProduct (){
     this.product.id = Date.now();
+    // call  addProduct from productService
     this.productService.addProduct(this.product);
+    // reset fields
     this.product={id:0,name:'',price:0,description:''}
   }
 

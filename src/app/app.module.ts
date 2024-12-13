@@ -51,7 +51,12 @@ registerLocaleData(en);
     NzFormModule,
     NzInputModule,
     NzPaginationModule,
-    NzModalModule,NzIconModule,NzTableModule,NzCardModule,NzInputNumberModule,NzListModule,
+    NzModalModule,
+    NzIconModule,
+    NzTableModule,
+    NzCardModule,
+    NzInputNumberModule,
+    NzListModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

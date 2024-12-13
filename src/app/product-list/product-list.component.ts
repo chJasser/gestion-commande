@@ -13,12 +13,17 @@ export class ProductListComponent implements OnInit  {
 
   constructor(private  productService :ProductService){}
 
+  // ngOnInit is a lifecycle hook in Angular that is called after the constructor is called and after the component's inputs have been initialized.
   ngOnInit(): void {
+    // get all products
    this.products = this.productService.getProducts();
   }
 
   deleteProduct(id:number){
+    // call delete product from product service
     this.productService.deleteProduct(id);
+
+    // refresh
     this.products = this.productService.getProducts();
   }
 
