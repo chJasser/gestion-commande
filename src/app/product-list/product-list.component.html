@@ -21,9 +21,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let product of products">
-        <td>{{ product.id }}</td>
+        <td>{{ product.id.toString().slice(0, 2) }}</td>
         <td>{{ product.name }}</td>
-        <td>{{ product.price | currency:'EUR' }}</td>
+        <td>{{ product.price | currency: 'TND' }}</td>
         <td>{{ product.description }}</td>
         <td>
           <!-- <button nz-button nzType="default" nzSize="small" (click)="viewProduct(product.id)">Voir</button>

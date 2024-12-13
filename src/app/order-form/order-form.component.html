@@ -6,7 +6,13 @@
     <div nz-col [nzSpan]="12">
       <nz-card [nzBordered]="true">
         <div class="form-group">
-          <label><strong>{{ product.name }}</strong> ({{ product.price | currency }})</label>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <label><strong>Id:</strong> {{ product.id.toString().slice(0, 2) }}</label>
+            <label><strong>Title:</strong>  {{ product.name }} </label>
+            <label><strong>Description:</strong> {{ product.description }}</label>
+            <label><strong>prix:</strong>({{ product.price | currency: 'TND' }})</label>
+          </div>
+
           <div nz-row [nzGutter]="8">
             <div nz-col [nzSpan]="12">
               <nz-input-number
@@ -44,7 +50,7 @@
       <div class="item-content">
         <h4>{{ item.product.name }}</h4>
         <p>Quantité: {{ item.quantity }}</p>
-        <p>Prix: {{ item.product.price | currency }}</p>
+        <p>Prix: {{ item.product.price | currency: 'TND' }}</p>
       </div>
       <div class="item-actions">
         <button nz-button nzType="primary" (click)="removeProductFromOrder(item.product.id)">
@@ -57,12 +63,12 @@
   <hr />
 
   <!-- Display total price -->
-  <h3>Total: <strong>{{ totalPrice | currency }}</strong></h3>
+  <h3>Total: <strong>{{ totalPrice | currency: 'TND' }}</strong></h3>
 
   <!-- Submit order -->
   <div class="action-buttons">
     <button nz-button nzType="primary" nzBlock (click)="submitOrder()" [disabled]="selectedProducts.length === 0">
-      Soumettre la commande
+      soumetre la commande
     </button>
   </div>
 </div>

@@ -11,7 +11,7 @@
       <div class="order-details">
         <h3 class="order-id">Order ID: {{ order.id }}</h3>
         <p class="order-date">Date: {{ order.date | date }}</p>
-        <p class="order-total">Total: {{ order.totalPrice | currency }}</p>
+        <p class="order-total">Total: {{ order.totalPrice | currency: 'TND'}}</p>
       </div>
 
       <div class="order-actions">
@@ -28,6 +28,6 @@
 
   <hr />
   <h3 class="total-sum">
-    Total Sum of All Orders: {{ totalSum | currency }}
+    Total Sum of All Orders: {{ totalSum | currency: 'TND' }}
   </h3>
 </div>
